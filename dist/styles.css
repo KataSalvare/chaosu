@@ -123,8 +123,8 @@ body{background:#090a08}
 .companions-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:15px}
 .companion-card{min-width:0;background:#171815;border:1px solid rgba(244,241,233,.11);transition:transform .2s,border-color .2s}
 .companion-card:hover{transform:translateY(-3px);border-color:rgba(255,207,52,.48)}
-.companion-portrait{height:220px;overflow:hidden;background:#24231f}
-.companion-portrait img{display:block;width:100%;height:100%;object-fit:contain}
+.companion-portrait{height:auto;aspect-ratio:1;overflow:hidden;background:#24231f}
+.companion-portrait img{display:block;width:100%;height:100%;object-fit:cover}
 .companion-info{padding:21px 21px 20px}
 .companion-name{display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-top:12px}
 .companion-name h3{margin:0;font-size:20px;line-height:1.4;font-weight:800}
@@ -161,7 +161,7 @@ body{background:#090a08}
 }
 @media(max-width:1000px){
   .games-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
-  .companion-portrait{height:190px}
+  .companion-portrait{height:auto;aspect-ratio:1}
   .companion-info{padding:18px 15px}
   .companion-name{align-items:flex-start;flex-direction:column;gap:4px}
   .companion-info>p{min-height:72px}
@@ -183,8 +183,8 @@ body{background:#090a08}
   .companions-heading{margin-bottom:21px}
   .companions-grid{grid-template-columns:1fr;gap:12px}
   .companion-card{display:grid;grid-template-columns:112px minmax(0,1fr)}
-  .companion-portrait{height:100%;min-height:194px}
-  .companion-portrait img{min-height:194px}
+  .companion-portrait{height:112px;min-height:0;aspect-ratio:auto;align-self:start}
+  .companion-portrait img{min-height:0}
   .companion-info{padding:14px 13px}
   .companion-name{margin-top:9px;gap:3px}
   .companion-name h3{font-size:16px}
@@ -206,6 +206,7 @@ body{background:#090a08}
 }
 @media(max-width:390px){
   .companion-card{grid-template-columns:96px minmax(0,1fr)}
+  .companion-portrait{height:96px}
   .companion-info{padding:12px 10px}
   .companion-name h3{font-size:15px}
   .review-item p{font-size:12px}
