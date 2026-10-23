@@ -120,8 +120,6 @@ body{background:#090a08}
 .games-note{margin:19px 0 0;text-align:right;color:#78766e;font-size:11px}
 .companions{padding-top:110px;padding-bottom:106px}
 .companions-heading{margin-bottom:24px}
-.sample-disclosure{display:flex;align-items:center;gap:10px;margin:0 0 27px;padding:12px 15px;border-left:2px solid var(--yellow);background:rgba(255,207,52,.07);color:#d2cfc3;font-size:13px;line-height:1.7}
-.sample-disclosure span{color:var(--yellow);font-size:18px}
 .companions-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:15px}
 .companion-card{min-width:0;background:#171815;border:1px solid rgba(244,241,233,.11);transition:transform .2s,border-color .2s}
 .companion-card:hover{transform:translateY(-3px);border-color:rgba(255,207,52,.48)}
@@ -129,7 +127,6 @@ body{background:#090a08}
 .companion-portrait img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .35s}
 .companion-card:hover .companion-portrait img{transform:scale(1.035)}
 .companion-info{padding:21px 21px 20px}
-.sample-tag{display:inline-flex;align-items:center;padding:3px 8px;border:1px solid rgba(255,207,52,.38);color:var(--yellow);font:10px var(--mono);letter-spacing:.06em}
 .companion-name{display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-top:12px}
 .companion-name h3{margin:0;font-size:20px;line-height:1.4;font-weight:800}
 .companion-name>span{flex:none;color:#a6a398;font-size:12px}
@@ -145,16 +142,20 @@ body{background:#090a08}
 .reviews-heading h2 em{color:#d85d17}
 .reviews-heading>p:last-child{margin:21px 0 0;color:#706d64;font-size:14px;line-height:1.9}
 .review-list{border-top:1px solid rgba(16,17,15,.2)}
-.review-item{min-height:120px;display:grid;grid-template-columns:95px 1fr 38px;align-items:center;gap:15px;padding:20px 0;border-bottom:1px solid rgba(16,17,15,.18)}
-.review-stars{align-self:start;padding-top:4px;color:#dd781f;font-size:16px;letter-spacing:2px;white-space:nowrap}
-.review-label{color:#8a5828;font:10px var(--mono);letter-spacing:.06em}
+.review-item{min-height:120px;display:grid;grid-template-columns:52px minmax(0,1fr) 30px;align-items:center;gap:14px;padding:20px 0;border-bottom:1px solid rgba(16,17,15,.18)}
+.review-avatar{display:block;width:48px;height:48px;border:2px solid rgba(16,17,15,.12);border-radius:50%;object-fit:cover}
+.review-content{min-width:0}
+.review-meta{display:flex;align-items:center;gap:12px}
+.review-name{color:#24241f;font-size:14px;line-height:1.4;font-weight:800}
+.review-rating{display:inline-flex;align-items:center;gap:7px}
+.review-stars{color:#dd781f;font-size:14px;letter-spacing:1px;white-space:nowrap}
+.review-score{color:#8a5828;font:12px var(--mono)}
 .review-item p{margin:8px 0 0;color:#24241f;font-size:15px;line-height:1.7}
-.review-mark{justify-self:end;color:#aaa69b;font:11px var(--mono)}
+.review-mark{align-self:center;justify-self:end;color:#aaa69b;font:11px var(--mono)}
 @media(min-width:701px){
   .game-card h3{font-size:18px}
   .games-heading>p,.companions-heading>p{font-size:15px}
   .games-note{font-size:12px}
-  .sample-disclosure{font-size:14px}
   .companion-info>p{font-size:14px}
   .companion-game{font-size:13px}
   .review-item p{font-size:16px}
@@ -181,13 +182,11 @@ body{background:#090a08}
   .games-note{font-size:10px;text-align:left;margin-top:15px}
   .companions{padding-top:79px;padding-bottom:81px}
   .companions-heading{margin-bottom:21px}
-  .sample-disclosure{align-items:flex-start;margin-bottom:20px;padding:10px 11px;font-size:11px}
   .companions-grid{grid-template-columns:1fr;gap:12px}
   .companion-card{display:grid;grid-template-columns:112px minmax(0,1fr)}
   .companion-portrait{height:100%;min-height:194px}
   .companion-portrait img{min-height:194px}
   .companion-info{padding:14px 13px}
-  .sample-tag{font-size:9px;padding:2px 6px}
   .companion-name{margin-top:9px;gap:3px}
   .companion-name h3{font-size:16px}
   .companion-name>span{font-size:10px}
@@ -197,11 +196,14 @@ body{background:#090a08}
   .reviews{padding-top:78px;padding-bottom:82px}
   .reviews-layout{grid-template-columns:1fr;gap:28px;margin-top:27px}
   .reviews-heading>p:last-child{margin-top:13px;font-size:12px}
-  .review-item{min-height:110px;grid-template-columns:1fr 25px;gap:3px 10px;padding:17px 0}
-  .review-stars{grid-column:1;grid-row:1;font-size:14px}
-  .review-item>div{grid-column:1;grid-row:2}
-  .review-mark{grid-column:2;grid-row:1 / span 2}
-  .review-item p{font-size:13px}
+  .review-item{min-height:110px;grid-template-columns:42px minmax(0,1fr) 22px;gap:4px 9px;padding:17px 0}
+  .review-avatar{width:40px;height:40px}
+  .review-meta{align-items:flex-start;flex-direction:column;gap:4px}
+  .review-name{font-size:13px}
+  .review-stars{font-size:13px}
+  .review-score{font-size:11px}
+  .review-item p{margin-top:7px;font-size:13px}
+  .review-mark{align-self:center;grid-column:3;grid-row:1 / span 2}
 }
 @media(max-width:390px){
   .companion-card{grid-template-columns:96px minmax(0,1fr)}
