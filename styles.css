@@ -212,6 +212,62 @@ body{background:#090a08}
   .review-item p{font-size:12px}
 }
 
+/* Motion system: short reveals, playful brand accents, and clear input feedback. */
+@keyframes hero-enter{from{opacity:0;transform:translate3d(0,20px,0) scale(.985)}to{opacity:1;transform:translate3d(0,0,0) scale(1)}}
+@keyframes mascot-enter{0%{opacity:0;transform:translate3d(0,34px,0) rotate(-3deg) scale(.92)}68%{opacity:1;transform:translate3d(0,-7px,0) rotate(4deg) scale(1.025)}100%{opacity:1;transform:translate3d(0,0,0) rotate(3deg) scale(1)}}
+@keyframes mascot-float{0%,100%{transform:rotate(3deg) translateY(0)}50%{transform:rotate(1.5deg) translateY(-5px)}}
+@keyframes orbit-turn{from{rotate:0deg}to{rotate:360deg}}
+@keyframes stamp-bob{0%,100%{transform:rotate(9deg) translateY(0)}50%{transform:rotate(5deg) translateY(-5px)}}
+@keyframes streak-pass{0%,100%{opacity:.12;transform:translateX(-8px)}50%{opacity:.45;transform:translateX(8px)}}
+@keyframes menu-enter{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:translateY(0)}}
+@keyframes panel-enter{from{opacity:0;transform:translateY(14px) scale(.985)}to{opacity:1;transform:translateY(0) scale(1)}}
+@keyframes field-enter{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+@keyframes success-enter{0%{opacity:0;transform:scale(.97)}70%{opacity:1;transform:scale(1.015)}100%{opacity:1;transform:scale(1)}}
+
+.motion-ready [data-reveal]{opacity:0;transform:translate3d(0,18px,0);transition:opacity .58s ease,transform .58s cubic-bezier(.2,.7,.2,1),border-color .22s ease,background .24s ease,padding .24s ease,box-shadow .22s ease;transition-delay:calc(var(--item-index,0) * 85ms),calc(var(--item-index,0) * 85ms),0ms,0ms,0ms,0ms}
+.motion-ready [data-reveal].is-visible{opacity:1;transform:translate3d(0,0,0)}
+.motion-ready [data-reveal]:focus-within{opacity:1;transform:translate3d(0,0,0)}
+.hero-motion-ready .hero .eyebrow,.hero-motion-ready .hero h1,.hero-motion-ready .hero-description,.hero-motion-ready .hero-actions,.hero-motion-ready .hero-proof,.hero-motion-ready .speed-tag{animation:hero-enter .62s cubic-bezier(.2,.75,.25,1) both;animation-delay:var(--hero-delay,0ms)}
+.hero-motion-ready .mascot-card{animation:mascot-enter .86s cubic-bezier(.2,.75,.25,1) both,mascot-float 5.5s ease-in-out 1.2s infinite;animation-delay:var(--hero-delay,400ms),1.4s}
+.hero-motion-ready .orbit-one{animation:hero-enter .7s ease both,orbit-turn 48s linear 1s infinite;animation-delay:var(--hero-delay,480ms),1.6s}
+.hero-motion-ready .orbit-two{animation:hero-enter .8s ease both,orbit-turn 64s linear 1.1s infinite reverse;animation-delay:var(--hero-delay,560ms),1.8s}
+.hero-motion-ready .art-stamp{animation:hero-enter .55s cubic-bezier(.2,.75,.25,1) both,stamp-bob 3.8s ease-in-out 1.2s infinite;animation-delay:var(--hero-delay,0ms),1.2s}
+.hero-art::before{content:"";position:absolute;left:2%;top:24%;width:54px;height:38px;background:repeating-linear-gradient(180deg,transparent 0 7px,rgba(255,207,52,.55) 7px 8px);mask-image:linear-gradient(90deg,transparent,#000 35%,transparent);pointer-events:none;animation:streak-pass 3.6s ease-in-out infinite}
+.game-card .game-logo img,.companion-portrait img{transition:transform .45s cubic-bezier(.2,.7,.2,1)}
+.game-card:hover .game-logo img,.companion-card:hover .companion-portrait img{transform:scale(1.055)}
+.feature-card{transition:transform .22s ease,box-shadow .22s ease}
+.feature-card:hover,.motion-ready .feature-card.is-visible:hover{transform:translateY(-4px);box-shadow:0 14px 32px rgba(16,17,15,.12)}
+.motion-ready .game-card.is-visible:hover,.motion-ready .companion-card.is-visible:hover{transform:translateY(-3px)}
+.platform-row{grid-template-columns:52px 54px 1.2fr 1fr 150px;transition:padding .24s ease,background .24s ease,color .24s ease}
+.motion-ready .platform-row.is-visible:hover{padding:0 14px;background:#1b1c17}
+.platform-row .platform-action b{display:inline-block;transition:transform .22s ease}
+.platform-row:hover .platform-action b{transform:translate(3px,-3px)}
+.nav-toggle span{transition:transform .22s ease,opacity .18s ease}
+.main-nav.is-open{animation:menu-enter .24s ease both}
+.service-panel.is-opening{animation:panel-enter .28s cubic-bezier(.2,.75,.25,1) both}
+.field-entering{animation:field-enter .28s ease both}
+.form-success.is-entering{animation:success-enter .36s cubic-bezier(.2,.75,.25,1) both}
+.service-toggle svg{transition:transform .24s ease}
+.service-toggle:hover svg{transform:rotate(-8deg) scale(1.06)}
+
+@media(hover:none){
+  .game-card:active,.companion-card:active,.feature-card:active{transform:scale(.985)}
+  .platform-row:active{padding-left:9px;padding-right:9px;background:#1b1c17}
+  .motion-ready .game-card.is-visible:active,.motion-ready .companion-card.is-visible:active,.motion-ready .feature-card.is-visible:active{transform:scale(.985)}
+  .motion-ready .platform-row.is-visible:active{padding:0 9px;background:#1b1c17}
+}
+@media(max-width:700px){
+  .motion-ready [data-reveal]{transform:translate3d(0,12px,0);transition:opacity .46s ease,transform .46s cubic-bezier(.2,.7,.2,1),border-color .22s ease,background .24s ease,padding .24s ease,box-shadow .22s ease;transition-delay:min(calc(var(--item-index,0) * 45ms),180ms),min(calc(var(--item-index,0) * 45ms),180ms),0ms,0ms,0ms,0ms}
+  .hero-art::before{left:0;top:18%;transform:scale(.8)}
+}
+@media(max-width:380px){.platform-row{grid-template-columns:24px 28px 1fr 73px}}
+@media(prefers-reduced-motion:reduce){
+  .motion-ready [data-reveal]{opacity:1;transform:none;transition:none}
+  .hero-motion-ready .hero .eyebrow,.hero-motion-ready .hero h1,.hero-motion-ready .hero-description,.hero-motion-ready .hero-actions,.hero-motion-ready .hero-proof,.hero-motion-ready .mascot-card,.hero-motion-ready .orbit-one,.hero-motion-ready .orbit-two,.hero-motion-ready .art-stamp,.hero-motion-ready .speed-tag,.hero-art::before{animation:none!important;opacity:1;transform:none}
+  .ticker-track,.voice-wave i{animation:none!important}
+  .game-card .game-logo img,.companion-portrait img,.feature-card,.platform-row,.platform-row .platform-action b,.service-toggle svg{transition:none}
+}
+
 /* The centered desktop frame provides the outer whitespace; keep its inner gutter compact. */
 @media(min-width:701px){
   .section-pad{padding-left:clamp(32px,3.6vw,48px);padding-right:clamp(32px,3.6vw,48px)}

@@ -6,6 +6,64 @@ const formSuccess = document.querySelector('#form-success');
 const toast = document.querySelector('#download-toast');
 let toastTimer;
 
+const motionPreference = window.matchMedia('(prefers-reduced-motion: reduce)');
+if (!motionPreference.matches && 'IntersectionObserver' in window) {
+  const revealGroups = [
+    ['.about .section-kicker, .about-layout, .about-bottom'],
+    ['.games .section-kicker, .games-heading, .game-card'],
+    ['.experience .section-kicker, .experience-header, .feature-card, .app-showcase'],
+    ['.companions .section-kicker, .companions-heading, .companion-card, .companions-link'],
+    ['.reviews .section-kicker, .reviews-heading, .review-item'],
+    ['.download .section-kicker, .download-heading, .platform-row, .download-note'],
+    ['.join .section-kicker, .join-intro, .join-option, .join-aside, .application-form'],
+    ['.site-footer .footer-main, .site-footer .footer-legal'],
+  ];
+  const revealItems = revealGroups.flatMap((group) => [...document.querySelectorAll(group.join(','))]);
+
+  revealItems.forEach((element) => {
+    element.dataset.reveal = '';
+  });
+
+  document.querySelectorAll('.game-card, .feature-card, .companion-card, .review-item, .platform-row, .join-option').forEach((element) => {
+    const siblings = [...element.parentElement.children].filter((sibling) => sibling.hasAttribute('data-reveal'));
+    const position = siblings.indexOf(element);
+    element.style.setProperty('--item-index', Math.min(position, 6));
+  });
+
+  const revealObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -5% 0px' });
+
+  revealItems.forEach((element) => {
+    if (element.getBoundingClientRect().top < window.innerHeight * 0.92) {
+      element.classList.add('is-visible');
+    } else {
+      revealObserver.observe(element);
+    }
+  });
+
+  document.body.classList.add('motion-ready');
+
+  const heroMotion = [
+    '.hero .eyebrow', '.hero h1', '.hero-description', '.hero-actions', '.hero-proof',
+    '.mascot-card', '.orbit-one', '.orbit-two', '.art-stamp', '.speed-tag',
+  ];
+  heroMotion.forEach((selector, index) => {
+    const element = document.querySelector(selector);
+    if (element) element.style.setProperty('--hero-delay', `${index * 80}ms`);
+  });
+  document.querySelector('.mascot-card')?.style.setProperty('--hero-delay', '400ms');
+  document.querySelector('.orbit-one')?.style.setProperty('--hero-delay', '480ms');
+  document.querySelector('.orbit-two')?.style.setProperty('--hero-delay', '560ms');
+
+  document.body.classList.add('hero-motion-ready');
+}
+
 const gameLogos = [...document.querySelectorAll('.game-logo img')];
 gameLogos.forEach((image) => {
   const showFallback = () => image.closest('.game-card')?.classList.add('is-logo-missing');
@@ -41,10 +99,12 @@ function setApplicationType(type) {
   document.querySelectorAll('.companion-only').forEach((field) => {
     field.hidden = isClub;
     field.querySelector('input').required = !isClub;
+    field.classList.toggle('field-entering', !isClub);
   });
   document.querySelectorAll('.club-only').forEach((field) => {
     field.hidden = !isClub;
     field.querySelector('input').required = isClub;
+    field.classList.toggle('field-entering', isClub);
   });
 
   applicationForm.elements.applicationType.value = isClub ? '俱乐部入驻' : '陪玩伙伴';
@@ -67,6 +127,8 @@ applicationForm.addEventListener('submit', (event) => {
     element.hidden = true;
   });
   formSuccess.hidden = false;
+  formSuccess.classList.remove('is-entering');
+  requestAnimationFrame(() => formSuccess.classList.add('is-entering'));
 });
 
 document.querySelector('#submit-another').addEventListener('click', () => {
@@ -76,6 +138,7 @@ document.querySelector('#submit-another').addEventListener('click', () => {
     element.hidden = false;
   });
   formSuccess.hidden = true;
+  formSuccess.classList.remove('is-entering');
   applicationForm.elements.applicantName.focus();
 });
 
@@ -111,6 +174,7 @@ function setServiceOpen(isOpen) {
   serviceToggle.setAttribute('aria-expanded', String(isOpen));
   serviceToggle.setAttribute('aria-label', isOpen ? '在线客服已打开' : '打开在线客服');
   servicePanel.hidden = !isOpen;
+  servicePanel.classList.toggle('is-opening', isOpen);
 
   if (isOpen && serviceFrame.src === 'about:blank') {
     serviceFrame.src = serviceFrame.dataset.src;
