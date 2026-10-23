@@ -124,8 +124,7 @@ body{background:#090a08}
 .companion-card{min-width:0;background:#171815;border:1px solid rgba(244,241,233,.11);transition:transform .2s,border-color .2s}
 .companion-card:hover{transform:translateY(-3px);border-color:rgba(255,207,52,.48)}
 .companion-portrait{height:220px;overflow:hidden;background:#24231f}
-.companion-portrait img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .35s}
-.companion-card:hover .companion-portrait img{transform:scale(1.035)}
+.companion-portrait img{display:block;width:100%;height:100%;object-fit:contain}
 .companion-info{padding:21px 21px 20px}
 .companion-name{display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-top:12px}
 .companion-name h3{margin:0;font-size:20px;line-height:1.4;font-weight:800}
