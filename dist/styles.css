@@ -211,3 +211,11 @@ body{background:#090a08}
   .companion-name h3{font-size:15px}
   .review-item p{font-size:12px}
 }
+
+/* The centered desktop frame provides the outer whitespace; keep its inner gutter compact. */
+@media(min-width:701px){
+  .section-pad{padding-left:clamp(32px,3.6vw,48px);padding-right:clamp(32px,3.6vw,48px)}
+  .site-header{padding-left:clamp(32px,3.6vw,48px);padding-right:clamp(32px,3.6vw,48px)}
+  .site-footer{padding-left:clamp(32px,3.6vw,48px);padding-right:clamp(32px,3.6vw,48px)}
+  .scroll-cue{left:clamp(32px,3.6vw,48px)}
+}
