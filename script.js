@@ -6,6 +6,17 @@ const formSuccess = document.querySelector('#form-success');
 const toast = document.querySelector('#download-toast');
 let toastTimer;
 
+const gameLogos = [...document.querySelectorAll('.game-logo img')];
+gameLogos.forEach((image) => {
+  const showFallback = () => image.closest('.game-card')?.classList.add('is-logo-missing');
+  image.addEventListener('error', showFallback, { once: true });
+});
+window.addEventListener('load', () => {
+  gameLogos.forEach((image) => {
+    if (image.complete && image.naturalWidth === 0) image.closest('.game-card')?.classList.add('is-logo-missing');
+  });
+}, { once: true });
+
 navToggle.addEventListener('click', () => {
   const isOpen = navToggle.getAttribute('aria-expanded') === 'true';
   navToggle.setAttribute('aria-expanded', String(!isOpen));

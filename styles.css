@@ -97,3 +97,115 @@ body{background:#090a08}
   .service-backdrop:not([hidden]){position:absolute}
   body.service-open{overflow:hidden}
 }
+
+/* Game, companion, and player feedback showcases. */
+.games{padding-top:100px;padding-bottom:112px;background:#141511}
+.games-heading,.companions-heading{display:block;margin:30px 0 36px}
+.games-heading h2,.companions-heading h2,.reviews-heading h2{margin:0;font-size:clamp(42px,5.2vw,66px);line-height:1.12;letter-spacing:-.045em;font-weight:900}
+.games-heading h2 em,.companions-heading h2 em,.reviews-heading h2 em{font-style:normal;color:var(--orange)}
+.games-heading>p,.companions-heading>p{margin:15px 0 0;color:#aaa89e;font-size:14px;line-height:1.9}
+.games-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.game-card{position:relative;min-height:174px;padding:22px 18px 17px;display:flex;flex-direction:column;align-items:flex-start;justify-content:space-between;overflow:hidden;border:1px solid rgba(244,241,233,.11);background:linear-gradient(145deg,rgba(255,255,255,.035),transparent 58%),#1b1c18;transition:border-color .2s,transform .2s}
+.game-card::before{content:"";position:absolute;top:-47px;right:-34px;width:118px;height:118px;border:1px solid color-mix(in srgb,var(--game-accent),transparent 61%);border-radius:50%;box-shadow:0 0 0 16px color-mix(in srgb,var(--game-accent),transparent 93%),0 0 48px color-mix(in srgb,var(--game-accent),transparent 81%);pointer-events:none}
+.game-card:hover{transform:translateY(-3px);border-color:color-mix(in srgb,var(--game-accent),transparent 42%)}
+.game-index{position:absolute;top:15px;left:17px;color:#807e75;font:10px var(--mono);letter-spacing:.08em}
+.game-logo{width:100%;height:92px;display:grid;place-items:center;margin-top:8px}
+.game-logo img{display:block;max-width:min(82%,116px);max-height:78px;width:auto;height:auto;object-fit:contain;position:relative;z-index:1;filter:drop-shadow(0 5px 12px rgba(0,0,0,.18))}
+.game-card:nth-child(2) .game-logo img,.game-card:nth-child(5) .game-logo img{max-width:138px;max-height:60px}
+.game-card:nth-child(7) .game-logo img{filter:brightness(1.25) drop-shadow(0 5px 12px rgba(0,0,0,.18))}
+.game-card:nth-child(8) .game-logo img{max-height:80px}
+.game-card h3{position:relative;z-index:1;margin:15px 0 0;font-size:16px;line-height:1.4;font-weight:800;letter-spacing:.01em}
+.game-card.is-logo-missing .game-logo::after{content:"GAME";color:var(--game-accent);font:700 16px var(--mono);letter-spacing:.12em}
+.game-card.is-logo-missing .game-logo img{display:none}
+.games-note{margin:19px 0 0;text-align:right;color:#78766e;font-size:11px}
+.companions{padding-top:110px;padding-bottom:106px}
+.companions-heading{margin-bottom:24px}
+.sample-disclosure{display:flex;align-items:center;gap:10px;margin:0 0 27px;padding:12px 15px;border-left:2px solid var(--yellow);background:rgba(255,207,52,.07);color:#d2cfc3;font-size:13px;line-height:1.7}
+.sample-disclosure span{color:var(--yellow);font-size:18px}
+.companions-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:15px}
+.companion-card{min-width:0;background:#171815;border:1px solid rgba(244,241,233,.11);transition:transform .2s,border-color .2s}
+.companion-card:hover{transform:translateY(-3px);border-color:rgba(255,207,52,.48)}
+.companion-portrait{height:220px;overflow:hidden;background:#24231f}
+.companion-portrait img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .35s}
+.companion-card:hover .companion-portrait img{transform:scale(1.035)}
+.companion-info{padding:21px 21px 20px}
+.sample-tag{display:inline-flex;align-items:center;padding:3px 8px;border:1px solid rgba(255,207,52,.38);color:var(--yellow);font:10px var(--mono);letter-spacing:.06em}
+.companion-name{display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-top:12px}
+.companion-name h3{margin:0;font-size:20px;line-height:1.4;font-weight:800}
+.companion-name>span{flex:none;color:#a6a398;font-size:12px}
+.companion-info>p{min-height:53px;margin:12px 0 15px;color:#aaa89e;font-size:13px;line-height:1.8}
+.companion-game{display:block;padding-top:12px;border-top:1px solid var(--line);color:#ddd9cc;font-size:12px}
+.companions-link{margin-top:27px}
+.reviews{padding-top:104px;padding-bottom:112px;background:#f2efe7;color:var(--ink)}
+.reviews .section-kicker{color:#68665f}
+.reviews .kicker-rule{background:rgba(16,17,15,.25)}
+.reviews-layout{display:grid;grid-template-columns:.8fr 1.2fr;gap:9%;align-items:start;margin-top:31px}
+.reviews-heading .eyebrow{color:#8d521d}
+.reviews-heading h2{font-size:clamp(42px,5vw,62px)}
+.reviews-heading h2 em{color:#d85d17}
+.reviews-heading>p:last-child{margin:21px 0 0;color:#706d64;font-size:14px;line-height:1.9}
+.review-list{border-top:1px solid rgba(16,17,15,.2)}
+.review-item{min-height:120px;display:grid;grid-template-columns:95px 1fr 38px;align-items:center;gap:15px;padding:20px 0;border-bottom:1px solid rgba(16,17,15,.18)}
+.review-stars{align-self:start;padding-top:4px;color:#dd781f;font-size:16px;letter-spacing:2px;white-space:nowrap}
+.review-label{color:#8a5828;font:10px var(--mono);letter-spacing:.06em}
+.review-item p{margin:8px 0 0;color:#24241f;font-size:15px;line-height:1.7}
+.review-mark{justify-self:end;color:#aaa69b;font:11px var(--mono)}
+@media(min-width:701px){
+  .game-card h3{font-size:18px}
+  .games-heading>p,.companions-heading>p{font-size:15px}
+  .games-note{font-size:12px}
+  .sample-disclosure{font-size:14px}
+  .companion-info>p{font-size:14px}
+  .companion-game{font-size:13px}
+  .review-item p{font-size:16px}
+}
+@media(max-width:1000px){
+  .games-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .companion-portrait{height:190px}
+  .companion-info{padding:18px 15px}
+  .companion-name{align-items:flex-start;flex-direction:column;gap:4px}
+  .companion-info>p{min-height:72px}
+}
+@media(max-width:700px){
+  .games{padding-top:78px;padding-bottom:80px}
+  .games-heading,.companions-heading{display:block;margin:27px 0 25px}
+  .games-heading h2,.companions-heading h2,.reviews-heading h2{font-size:clamp(40px,11vw,56px)}
+  .games-heading>p,.companions-heading>p{margin:14px 0 0;font-size:12px}
+  .games-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+  .game-card{min-height:151px;padding:18px 13px 14px}
+  .game-index{top:12px;left:12px;font-size:9px}
+  .game-logo{height:82px;margin-top:5px}
+  .game-logo img{max-width:80%;max-height:66px}
+  .game-card:nth-child(2) .game-logo img,.game-card:nth-child(5) .game-logo img{max-width:125px;max-height:52px}
+  .game-card h3{margin-top:12px;font-size:14px}
+  .games-note{font-size:10px;text-align:left;margin-top:15px}
+  .companions{padding-top:79px;padding-bottom:81px}
+  .companions-heading{margin-bottom:21px}
+  .sample-disclosure{align-items:flex-start;margin-bottom:20px;padding:10px 11px;font-size:11px}
+  .companions-grid{grid-template-columns:1fr;gap:12px}
+  .companion-card{display:grid;grid-template-columns:112px minmax(0,1fr)}
+  .companion-portrait{height:100%;min-height:194px}
+  .companion-portrait img{min-height:194px}
+  .companion-info{padding:14px 13px}
+  .sample-tag{font-size:9px;padding:2px 6px}
+  .companion-name{margin-top:9px;gap:3px}
+  .companion-name h3{font-size:16px}
+  .companion-name>span{font-size:10px}
+  .companion-info>p{min-height:0;margin:9px 0 11px;font-size:11px;line-height:1.7}
+  .companion-game{padding-top:9px;font-size:10px}
+  .companions-link{margin-top:21px}
+  .reviews{padding-top:78px;padding-bottom:82px}
+  .reviews-layout{grid-template-columns:1fr;gap:28px;margin-top:27px}
+  .reviews-heading>p:last-child{margin-top:13px;font-size:12px}
+  .review-item{min-height:110px;grid-template-columns:1fr 25px;gap:3px 10px;padding:17px 0}
+  .review-stars{grid-column:1;grid-row:1;font-size:14px}
+  .review-item>div{grid-column:1;grid-row:2}
+  .review-mark{grid-column:2;grid-row:1 / span 2}
+  .review-item p{font-size:13px}
+}
+@media(max-width:390px){
+  .companion-card{grid-template-columns:96px minmax(0,1fr)}
+  .companion-info{padding:12px 10px}
+  .companion-name h3{font-size:15px}
+  .review-item p{font-size:12px}
+}
